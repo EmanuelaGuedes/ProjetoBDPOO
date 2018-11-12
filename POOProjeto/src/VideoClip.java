@@ -1,14 +1,12 @@
-import java.util.ArrayList;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class PlayList {
+public class VideoClip {
 	@Id
 	private Integer id;
 	private String nome;
-	private ArrayList<Musica> musicas;
+	private Musica musica;
 
 	public Integer getId() {
 		return id;
@@ -26,12 +24,12 @@ public class PlayList {
 		this.nome = nome;
 	}
 
-	public ArrayList<Musica> getMusicas() {
-		return musicas;
+	public Musica getMusica() {
+		return musica;
 	}
 
-	public void setMusicas(ArrayList<Musica> musicas) {
-		this.musicas = musicas;
+	public void setMusica(Musica musica) {
+		this.musica = musica;
 	}
 
 	@Override
@@ -39,7 +37,7 @@ public class PlayList {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((musicas == null) ? 0 : musicas.hashCode());
+		result = prime * result + ((musica == null) ? 0 : musica.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
@@ -52,16 +50,16 @@ public class PlayList {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PlayList other = (PlayList) obj;
+		VideoClip other = (VideoClip) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (musicas == null) {
-			if (other.musicas != null)
+		if (musica == null) {
+			if (other.musica != null)
 				return false;
-		} else if (!musicas.equals(other.musicas))
+		} else if (!musica.equals(other.musica))
 			return false;
 		if (nome == null) {
 			if (other.nome != null)
@@ -71,16 +69,16 @@ public class PlayList {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "PlayList [id=" + id + ", nome=" + nome + ", musicas=" + musicas + "]";
-	}
-
-	public PlayList(Integer id, String nome, ArrayList<Musica> musicas) {
+	public VideoClip(Integer id, String nome, Musica musica) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.musicas = musicas;
+		this.musica = musica;
+	}
+
+	@Override
+	public String toString() {
+		return "VideoClip [id=" + id + ", nome=" + nome + ", musica=" + musica + "]";
 	}
 
 }
