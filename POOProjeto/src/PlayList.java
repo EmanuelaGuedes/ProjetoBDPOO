@@ -2,8 +2,11 @@ import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "PlayList")
+
 public class PlayList {
 	@Id
 	private Integer id;

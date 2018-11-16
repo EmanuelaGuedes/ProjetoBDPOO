@@ -1,17 +1,29 @@
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Album")
+
 public class Album {
 	@Id
+	@Column(name = "id_album")
+	
+	
 	private Integer id;
 	private String titulo;
 	private Date anoDeLancamento;
-	
-	private Musica faixas;
-	
+
+	@OneToMany
+	@JoinColumn(name="id_album")
+	private Set<Musica> faixas;
+
 	private Artista artista;
 	private Genero genero;
 

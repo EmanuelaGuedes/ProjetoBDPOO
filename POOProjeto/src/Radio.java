@@ -1,8 +1,12 @@
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Radio")
+
 public class Radio {
+	
 	@Id
 	private Integer musicaFonte;
 	private String nome;

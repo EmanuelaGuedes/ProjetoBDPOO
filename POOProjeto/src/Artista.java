@@ -1,7 +1,10 @@
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Artista")
+
 public class Artista {
 
 	@Id
