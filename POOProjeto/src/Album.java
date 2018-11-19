@@ -24,12 +24,8 @@ public class Album {
 	private Integer id;
 	private String titulo;
 	private Date anoDeLancamento;
-
-	@ManyToMany
-	@JoinTable(
-	name = "Album_Musica",
-	joinColumns = @JoinColumn(name = "Album_id"),
-	inverseJoinColumns = @JoinColumn(name = "Musica_id"))
+	@OneToMany
+	@JoinColumn(name="id_Musica")
 	private Set<Musica> faixas;
 
 	private Artista artista;

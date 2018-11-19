@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,13 +16,8 @@ public class PlayList {
 	@Id
 	private Integer id;
 	private String nome;
-	
-	@ManyToMany
-	@JoinTable(
-	name = "PlayList_Radio",
-	joinColumns = @JoinColumn(name = "Playlist_id"),
-	inverseJoinColumns = @JoinColumn(name = "Radio_id"))
-
+	@OneToMany
+	@JoinColumn(name="id_Musica")
 	private Set<Musica> musicas;
 	public PlayList() {
 		super();

@@ -3,8 +3,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name = "Radio")
@@ -14,11 +13,8 @@ public class Radio {
 	@Id
 	private Integer musicaFonte;
 	private String nome;
-	@ManyToMany 
-	@JoinTable(
-			name = "Radio_PlayList",
-			joinColumns = @JoinColumn(name = "Radio_id"),
-			inverseJoinColumns = @JoinColumn(name = "PlayList_id"))
+	@ManyToOne
+	@JoinColumn(name="id_PlayList")
 	private Set <PlayList> playList;
 	public Integer getMusicaFonte() {
 		return musicaFonte;

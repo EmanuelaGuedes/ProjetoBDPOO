@@ -3,6 +3,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Set;
 @Entity
@@ -16,11 +17,8 @@ public class Artista {
 	private int numeroDeMusicas;
 	private int idade;
 	private String gravadora;
-	@ManyToMany 
-	@JoinTable(
-			name = "Artista_Musica",
-			joinColumns = @JoinColumn(name = "Artista_id"),
-			inverseJoinColumns = @JoinColumn(name = "Musica_id"))
+	@OneToMany
+	@JoinColumn(name="id_Musica")
 	private Set<Musica> musicas;
 	public Integer getId() {
 		return id;

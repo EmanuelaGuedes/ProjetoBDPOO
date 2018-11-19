@@ -1,6 +1,10 @@
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.Set;
+
 
 @Entity
 @Table(name = "VideoClip")
@@ -9,32 +13,24 @@ public class VideoClip {
 	@Id
 	private Integer id;
 	private String nome;
+
+	@ManyToOne
+	@JoinColumn(name="id_Musica")
 	private Musica musica;
-
-	public Integer getId() {
-		return id;
+	public VideoClip() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	public void setId(Integer id) {
+	public VideoClip(Integer id, String nome, Set<Musica> musica) {
+		super();
 		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Musica getMusica() {
-		return musica;
-	}
-
-	public void setMusica(Musica musica) {
 		this.musica = musica;
 	}
-
+	@Override
+	public String toString() {
+		return "VideoClip [id=" + id + ", nome=" + nome + ", musica=" + musica + "]";
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -44,7 +40,6 @@ public class VideoClip {
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -71,17 +66,13 @@ public class VideoClip {
 			return false;
 		return true;
 	}
-
-	public VideoClip(Integer id, String nome, Musica musica) {
-		super();
-		this.id = id;
-		this.nome = nome;
+	public Set<Musica> getMusica() {
+		return musica;
+	}
+	public void setMusica(Set<Musica> musica) {
 		this.musica = musica;
 	}
 
-	@Override
-	public String toString() {
-		return "VideoClip [id=" + id + ", nome=" + nome + ", musica=" + musica + "]";
-	}
+	
 
 }

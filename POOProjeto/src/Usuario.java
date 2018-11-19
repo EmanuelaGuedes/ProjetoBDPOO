@@ -16,13 +16,29 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String plano;
-	@ManyToMany
-	@JoinTable(name = "Usuario_Musica", joinColumns = @JoinColumn(name = "Usuario_id"), inverseJoinColumns = @JoinColumn(name = "Musica_id"))
-	
+	@ManyToMany 
+	@JoinTable(
+			name = "Usuario_Musica",
+			joinColumns = @JoinColumn(name = "Usuario_id"),
+			inverseJoinColumns = @JoinColumn(name = "Musica_id"))
 	private Set<Musica> ouve;
-	private Radio escutaUma;
+	
+	
+	@ManyToMany 
+	@JoinTable(
+			name = "Usuario_Radio",
+			joinColumns = @JoinColumn(name = "Usuario_id"),
+			inverseJoinColumns = @JoinColumn(name = "Radio_id"))
+	private Set <Radio> escutaUma;
+	
+	
+	@ManyToMany 
+	@JoinTable(
+			name = "Usuario_VideoClip",
+			joinColumns = @JoinColumn(name = "Usuario_id"),
+			inverseJoinColumns = @JoinColumn(name = "VideoClip_id"))
 	private Set<VideoClip> assiste;
-	private PlayList playlist;
+	
 	public Integer getConta() {
 		return conta;
 	}
@@ -53,10 +69,10 @@ public class Usuario {
 	public void setOuve(Set<Musica> ouve) {
 		this.ouve = ouve;
 	}
-	public Radio getEscutaUma() {
+	public Set<Radio> getEscutaUma() {
 		return escutaUma;
 	}
-	public void setEscutaUma(Radio escutaUma) {
+	public void setEscutaUma(Set<Radio> escutaUma) {
 		this.escutaUma = escutaUma;
 	}
 	public Set<VideoClip> getAssiste() {
@@ -141,7 +157,7 @@ public class Usuario {
 		return "Usuario [conta=" + conta + ", nome=" + nome + ", email=" + email + ", plano=" + plano + ", ouve=" + ouve
 				+ ", escutaUma=" + escutaUma + ", assiste=" + assiste + ", playlist=" + playlist + "]";
 	}
-	public Usuario(Integer conta, String nome, String email, String plano, Set<Musica> ouve, Radio escutaUma,
+	public Usuario(Integer conta, String nome, String email, String plano, Set<Musica> ouve, Set<Radio> escutaUma,
 			Set<VideoClip> assiste, PlayList playlist) {
 		super();
 		this.conta = conta;
@@ -157,6 +173,7 @@ public class Usuario {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	
 	
 
