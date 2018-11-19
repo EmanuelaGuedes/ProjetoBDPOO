@@ -5,8 +5,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Set;
+import java.util.Set;
+import java.util.Set;
 
 @Entity
 @Table(name = "Album")
@@ -20,8 +25,11 @@ public class Album {
 	private String titulo;
 	private Date anoDeLancamento;
 
-	@OneToMany
-	@JoinColumn(name="id_album")
+	@ManyToMany
+	@JoinTable(
+	name = "Album_Musica",
+	joinColumns = @JoinColumn(name = "Album_id"),
+	inverseJoinColumns = @JoinColumn(name = "Musica_id"))
 	private Set<Musica> faixas;
 
 	private Artista artista;
@@ -51,11 +59,11 @@ public class Album {
 		this.anoDeLancamento = anoDeLancamento;
 	}
 
-	public Musica getFaixas() {
+	public Set <Musica> getFaixas() {
 		return faixas;
 	}
 
-	public void setFaixas(Musica faixas) {
+	public void setFaixas(Set<Musica> faixas) {
 		this.faixas = faixas;
 	}
 
@@ -136,7 +144,7 @@ public class Album {
 		return true;
 	}
 
-	public Album(Integer id, String titulo, Date anoDeLancamento, Musica faixas, Artista artista, Genero genero) {
+	public Album(Integer id, String titulo, Date anoDeLancamento, Set<Musica> faixas, Artista artista, Genero genero) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -145,5 +153,11 @@ public class Album {
 		this.artista = artista;
 		this.genero = genero;
 	}
+
+	public Album() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 }

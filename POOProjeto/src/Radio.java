@@ -1,7 +1,11 @@
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
 @Entity
 @Table(name = "Radio")
 
@@ -10,32 +14,30 @@ public class Radio {
 	@Id
 	private Integer musicaFonte;
 	private String nome;
-	private PlayList playList;
-
+	@ManyToMany 
+	@JoinTable(
+			name = "Radio_PlayList",
+			joinColumns = @JoinColumn(name = "Radio_id"),
+			inverseJoinColumns = @JoinColumn(name = "PlayList_id"))
+	private Set <PlayList> playList;
 	public Integer getMusicaFonte() {
 		return musicaFonte;
 	}
-
 	public void setMusicaFonte(Integer musicaFonte) {
 		this.musicaFonte = musicaFonte;
 	}
-
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public PlayList getPlayList() {
+	public Set<PlayList> getPlayList() {
 		return playList;
 	}
-
-	public void setPlayList(PlayList playList) {
+	public void setPlayList(Set<PlayList> playList) {
 		this.playList = playList;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -45,7 +47,6 @@ public class Radio {
 		result = prime * result + ((playList == null) ? 0 : playList.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -72,13 +73,15 @@ public class Radio {
 			return false;
 		return true;
 	}
-
 	@Override
 	public String toString() {
 		return "Radio [musicaFonte=" + musicaFonte + ", nome=" + nome + ", playList=" + playList + "]";
 	}
-
-	public Radio(Integer musicaFonte, String nome, PlayList playList) {
+	public Radio() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Radio(Integer musicaFonte, String nome, Set<PlayList> playList) {
 		super();
 		this.musicaFonte = musicaFonte;
 		this.nome = nome;

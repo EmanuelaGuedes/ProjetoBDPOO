@@ -1,7 +1,11 @@
-import java.util.ArrayList;
+
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -11,32 +15,22 @@ public class PlayList {
 	@Id
 	private Integer id;
 	private String nome;
-	private ArrayList<Musica> musicas;
+	
+	@ManyToMany
+	@JoinTable(
+	name = "PlayList_Radio",
+	joinColumns = @JoinColumn(name = "Playlist_id"),
+	inverseJoinColumns = @JoinColumn(name = "Radio_id"))
 
-	public Integer getId() {
-		return id;
+	private Set<Musica> musicas;
+	public PlayList() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	public void setId(Integer id) {
-		this.id = id;
+	@Override
+	public String toString() {
+		return "PlayList [id=" + id + ", nome=" + nome + ", musicas=" + musicas + "]";
 	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public ArrayList<Musica> getMusicas() {
-		return musicas;
-	}
-
-	public void setMusicas(ArrayList<Musica> musicas) {
-		this.musicas = musicas;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -46,7 +40,6 @@ public class PlayList {
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -73,17 +66,26 @@ public class PlayList {
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "PlayList [id=" + id + ", nome=" + nome + ", musicas=" + musicas + "]";
+	public Integer getId() {
+		return id;
 	}
-
-	public PlayList(Integer id, String nome, ArrayList<Musica> musicas) {
-		super();
+	public void setId(Integer id) {
 		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public Set<Musica> getMusicas() {
+		return musicas;
+	}
+	public void setMusicas(Set<Musica> musicas) {
 		this.musicas = musicas;
 	}
+	
+	
+	
 
 }

@@ -1,7 +1,10 @@
-import java.util.ArrayList;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,75 +16,61 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String plano;
-	private Musica ouve;
+	@ManyToMany
+	@JoinTable(name = "Usuario_Musica", joinColumns = @JoinColumn(name = "Usuario_id"), inverseJoinColumns = @JoinColumn(name = "Musica_id"))
+	
+	private Set<Musica> ouve;
 	private Radio escutaUma;
-	private ArrayList<VideoClip> assiste;
+	private Set<VideoClip> assiste;
 	private PlayList playlist;
-
 	public Integer getConta() {
 		return conta;
 	}
-
 	public void setConta(Integer conta) {
 		this.conta = conta;
 	}
-
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public String getPlano() {
 		return plano;
 	}
-
 	public void setPlano(String plano) {
 		this.plano = plano;
 	}
-
-	public Musica getOuve() {
+	public Set<Musica> getOuve() {
 		return ouve;
 	}
-
-	public void setOuve(Musica ouve) {
+	public void setOuve(Set<Musica> ouve) {
 		this.ouve = ouve;
 	}
-
 	public Radio getEscutaUma() {
 		return escutaUma;
 	}
-
 	public void setEscutaUma(Radio escutaUma) {
 		this.escutaUma = escutaUma;
 	}
-
-	public ArrayList<VideoClip> getAssiste() {
+	public Set<VideoClip> getAssiste() {
 		return assiste;
 	}
-
-	public void setAssiste(ArrayList<VideoClip> assiste) {
+	public void setAssiste(Set<VideoClip> assiste) {
 		this.assiste = assiste;
 	}
-
 	public PlayList getPlaylist() {
 		return playlist;
 	}
-
 	public void setPlaylist(PlayList playlist) {
 		this.playlist = playlist;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -96,7 +85,6 @@ public class Usuario {
 		result = prime * result + ((playlist == null) ? 0 : playlist.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -148,15 +136,13 @@ public class Usuario {
 			return false;
 		return true;
 	}
-
 	@Override
 	public String toString() {
 		return "Usuario [conta=" + conta + ", nome=" + nome + ", email=" + email + ", plano=" + plano + ", ouve=" + ouve
 				+ ", escutaUma=" + escutaUma + ", assiste=" + assiste + ", playlist=" + playlist + "]";
 	}
-
-	public Usuario(Integer conta, String nome, String email, String plano, Musica ouve, Radio escutaUma,
-			ArrayList<VideoClip> assiste, PlayList playlist) {
+	public Usuario(Integer conta, String nome, String email, String plano, Set<Musica> ouve, Radio escutaUma,
+			Set<VideoClip> assiste, PlayList playlist) {
 		super();
 		this.conta = conta;
 		this.nome = nome;
@@ -167,5 +153,12 @@ public class Usuario {
 		this.assiste = assiste;
 		this.playlist = playlist;
 	}
+	public Usuario() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 
+	
 }

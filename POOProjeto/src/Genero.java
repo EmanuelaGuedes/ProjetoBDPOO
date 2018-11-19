@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,40 +13,31 @@ public class Genero {
 	private Integer id;
 	private String estiloMusical;
 	private Musica musicas;
-	private ArrayList<Artista> maisFamosos;
-
+	private Set<Artista> maisFamosos;
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getEstiloMusical() {
 		return estiloMusical;
 	}
-
 	public void setEstiloMusical(String estiloMusical) {
 		this.estiloMusical = estiloMusical;
 	}
-
 	public Musica getMusicas() {
 		return musicas;
 	}
-
 	public void setMusicas(Musica musicas) {
 		this.musicas = musicas;
 	}
-
-	public ArrayList<Artista> getMaisFamosos() {
+	public Set<Artista> getMaisFamosos() {
 		return maisFamosos;
 	}
-
-	public void setMaisFamosos(ArrayList<Artista> maisFamosos) {
+	public void setMaisFamosos(Set<Artista> maisFamosos) {
 		this.maisFamosos = maisFamosos;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -56,7 +48,6 @@ public class Genero {
 		result = prime * result + ((musicas == null) ? 0 : musicas.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -88,19 +79,17 @@ public class Genero {
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "Genero [id=" + id + ", estiloMusical=" + estiloMusical + ", musicas=" + musicas + ", maisFamosos="
-				+ maisFamosos + "]";
-	}
-
-	public Genero(Integer id, String estiloMusical, Musica musicas, ArrayList<Artista> maisFamosos) {
+	public Genero(Integer id, String estiloMusical, Musica musicas, Set<Artista> maisFamosos) {
 		super();
 		this.id = id;
 		this.estiloMusical = estiloMusical;
 		this.musicas = musicas;
 		this.maisFamosos = maisFamosos;
 	}
+	public Genero() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
+	
 }
