@@ -106,6 +106,6 @@ public class Main {
 		daoVideoClip.save(v2);
 		VideoClip findVideoClip = daoVideoClip.find(VideoClip.class, 223l);
 		System.out.println(findVideoClip.getNome());
-
+			//Rodrigo
 }
 }
