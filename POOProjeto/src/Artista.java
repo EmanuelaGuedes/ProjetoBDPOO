@@ -9,10 +9,10 @@ import java.util.Set;
 @Entity
 @Table(name = "Artista")
 
-public class Artista {
+public class Artista implements Identificavel{
 
 	@Id
-	private Integer id;
+	private Long id;
 	private String nome;
 	private int numeroDeMusicas;
 	private int idade;
@@ -20,10 +20,10 @@ public class Artista {
 	@OneToMany
 	@JoinColumn(name="id_Musica")
 	private Set<Musica> musicas;
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNome() {
@@ -108,7 +108,7 @@ public class Artista {
 		return "Artista [id=" + id + ", nome=" + nome + ", numeroDeMusicas=" + numeroDeMusicas + ", idade=" + idade
 				+ ", gravadora=" + gravadora + ", musicas=" + musicas + "]";
 	}
-	public Artista(Integer id, String nome, int numeroDeMusicas, int idade, String gravadora, Set<Musica> musicas) {
+	public Artista(Long id, String nome, int numeroDeMusicas, int idade, String gravadora, Set<Musica> musicas) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -121,7 +121,5 @@ public class Artista {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
 
 }

@@ -12,20 +12,30 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PlayList")
 
-public class PlayList {
+public class PlayList implements Identificavel{
 	@Id
-	private Integer id;
+	private Long id;
 	private String nome;
 	@OneToMany
 	@JoinColumn(name="id_Musica")
 	private Set<Musica> musicas;
-	public PlayList() {
-		super();
-		// TODO Auto-generated constructor stub
+	public Long getId() {
+		return id;
 	}
-	@Override
-	public String toString() {
-		return "PlayList [id=" + id + ", nome=" + nome + ", musicas=" + musicas + "]";
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public Set<Musica> getMusicas() {
+		return musicas;
+	}
+	public void setMusicas(Set<Musica> musicas) {
+		this.musicas = musicas;
 	}
 	@Override
 	public int hashCode() {
@@ -62,26 +72,17 @@ public class PlayList {
 			return false;
 		return true;
 	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
+	public PlayList(Long id, String nome, Set<Musica> musicas) {
+		super();
 		this.id = id;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	public Set<Musica> getMusicas() {
-		return musicas;
-	}
-	public void setMusicas(Set<Musica> musicas) {
 		this.musicas = musicas;
 	}
-	
-	
+	public PlayList() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	
 
 }

@@ -5,36 +5,29 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Musica")
 
-public class Musica {
+public class Musica implements Identificavel {
 	@Id
-	private Integer id;
+	private Long id;
 	private String nome;
 	private int duracao;
-
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 	public int getDuracao() {
 		return duracao;
 	}
-
 	public void setDuracao(int duracao) {
 		this.duracao = duracao;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -44,7 +37,6 @@ public class Musica {
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -68,17 +60,20 @@ public class Musica {
 			return false;
 		return true;
 	}
-
 	@Override
 	public String toString() {
 		return "Musica [id=" + id + ", nome=" + nome + ", duracao=" + duracao + "]";
 	}
-
-	public Musica(Integer id, String nome, int duracao) {
+	public Musica(Long id, String nome, int duracao) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.duracao = duracao;
 	}
+	public Musica() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 }

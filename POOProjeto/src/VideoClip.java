@@ -9,9 +9,9 @@ import java.util.Set;
 @Entity
 @Table(name = "VideoClip")
 
-public class VideoClip {
+public class VideoClip implements Identificavel {
 	@Id
-	private Integer id;
+	private Long id;
 	private String nome;
 
 	@ManyToOne
@@ -21,15 +21,23 @@ public class VideoClip {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public VideoClip(Integer id, String nome, Set<Musica> musica) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.musica = musica;
+	public Long getId() {
+		return id;
 	}
-	@Override
-	public String toString() {
-		return "VideoClip [id=" + id + ", nome=" + nome + ", musica=" + musica + "]";
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public Musica getMusica() {
+		return musica;
+	}
+	public void setMusica(Musica musica) {
+		this.musica = musica;
 	}
 	@Override
 	public int hashCode() {
@@ -66,13 +74,15 @@ public class VideoClip {
 			return false;
 		return true;
 	}
-	public Set<Musica> getMusica() {
-		return musica;
+	@Override
+	public String toString() {
+		return "VideoClip [id=" + id + ", nome=" + nome + ", musica=" + musica + "]";
 	}
-	public void setMusica(Set<Musica> musica) {
+	public VideoClip(Long id, String nome, Musica musica) {
+		super();
+		this.id = id;
+		this.nome = nome;
 		this.musica = musica;
 	}
-
-	
 
 }
