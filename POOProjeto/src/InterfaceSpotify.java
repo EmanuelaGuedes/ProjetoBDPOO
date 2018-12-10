@@ -2,33 +2,33 @@ import java.util.ArrayList;
 
 public interface InterfaceSpotify {
 
-	public Usuario addUsuario(Integer conta, String nome);
+	public Usuario addUsuario(Integer conta, String nome) throws NomeInvalidoException;
+	
+	public void removerUsuario(Integer conta, Usuario usuario) throws IdInvalidoException;
 
-	public void removerUsuario(Integer conta, Usuario usuario);
+	public Musica addMusica(Integer id, String nome, Artista artista, Album album, Genero genero) throws ArtistaInvalidoException;
 
-	public Musica addMusica(Integer id, String nome, Artista artista, Album album, Genero genero);
+	public void removerMusica(Integer id, Musica musica) throws MusicaInvalidoException;
 
-	public void removerMusica(Integer id, Musica musica);
+	public Album addAlbum(Integer id, String nome, Genero genero, Artista artista, PlayList playlist)throws GeneroInvalidoException ;
 
-	public Album addAlbum(Integer id, String nome, Genero genero, Artista artista, PlayList playlist);
+	public void removeAlbum(Integer id, Album album) throws AlbumInvalidoException ;
 
-	public void removeAlbum(Integer id, Album album);
+	public Artista addArtista(Integer id, String nome, Musica musicas) throws IdInvalidoException;
 
-	public Artista addArtista(Integer id, String nome, Musica musicas);
-
-	public void removeArtista(Integer id, Artista artista);
+	public void removeArtista(Integer id, Artista artista) throws ArtistaInvalidoException;
 
 	public Genero addGenero(Integer id, String estiloMusical, Musica musicas, ArrayList<Artista> maisFamosos,
-			PlayList playlist);
+			PlayList playlist) throws PlayListInvalidoException;
 
-	public void removerGenero(Integer id, Genero genero);
+	public void removerGenero(Integer id, Genero genero) throws IdInvalidoException ;
 
-	public PlayList addPlayList(Integer id, String nome, ArrayList<Musica> musicas);
+	public PlayList addPlayList(Integer id, String nome, ArrayList<Musica> musicas) throws MusicaInvalidoException;
 
-	public void removePlayList(Integer id, PlayList playlist);
+	public void removePlayList(Integer id, PlayList playlist)throws PlayListInvalidoException;
 
-	public Radio createRadio(Integer musicaFonte, String nome, PlayList playList);
+	public Radio createRadio(Integer musicaFonte, String nome, PlayList playList) throws MusicaFonteInvalidoException;
 
-	public void removeRadio(Integer musicaFonte, Radio radio);
+	public void removeRadio(Integer musicaFonte, Radio radio) throws MusicaFonteInvalidoException;
 
 }
