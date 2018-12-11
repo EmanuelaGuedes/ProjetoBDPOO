@@ -4,7 +4,7 @@ public class Implementacao implements InterfaceSpotify {
 
 	
 	
-	
+	//Man9iwed
 	
 	@Override
 	public Usuario addUsuario(Integer conta, String nome) throws NomeInvalidoException {
